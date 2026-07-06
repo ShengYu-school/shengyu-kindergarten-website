@@ -89,7 +89,7 @@ ul { padding: 0; list-style: none; }
   align-items: center; gap: 40px;
   padding-top: 48px; padding-bottom: 0;
 }
-.hero-copy { position: relative; padding-bottom: 72px; }
+.hero-copy { position: relative; padding-bottom: 0; }
 .hero-sun { width: 34px; height: 34px; margin-bottom: 10px; }
 .eyebrow { color: var(--orange); font-weight: 700; font-size: 16px; margin-bottom: 10px; }
 .hero h1 {
@@ -346,7 +346,7 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
      標題與 lead 都有 <br> 控制斷行，max-content 不會把欄撐到失控。
      align-items:start＋收小 padding-top：把 navbar 到 hero 內容的空隙壓到最小、
      不再被垂直置中往下推（零頭高度差移到下方、緊接特色卡片，較不顯眼） */
-  .hero-inner { grid-template-columns: max-content 1fr; align-items: start; padding-top: 28px; }
+  .hero-inner { grid-template-columns: max-content 1fr; align-items: center; padding-top: 28px; }
 
   /* 圖片／元素份量：放大被限縮的視覺元素 */
   .feature-icon { width: 56px; height: 56px; }
