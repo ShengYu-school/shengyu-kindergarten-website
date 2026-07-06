@@ -235,6 +235,8 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
 }
 .showcase-intro .section-tag { color: var(--brown); }
 .showcase-intro .section-tag .ic { color: var(--green); }
+.campus .section-tag .ic { color: var(--yellow); }
+.admission .section-tag .ic { color: var(--red); }
 .showcase-intro .section-body { max-width: 62ch; }
 .showcase-sprig {
   position: absolute;
