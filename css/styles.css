@@ -63,10 +63,8 @@ ul { padding: 0; list-style: none; }
 }
 .nav-inner { display: flex; align-items: center; gap: 28px; height: 76px; }
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-sun { width: 52px; height: 55px; flex: none; }
-.logo-text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-text strong { font-size: 19px; font-weight: 900; color: var(--ink); }
-.logo-text small { font-size: 11px; letter-spacing: .22em; color: var(--orange); font-weight: 700; }
+.logo-image { display: block; width: 68px; height: 68px; object-fit: contain; }
+.footer-brand .logo-image { width: 118px; height: 118px; }
 .site-nav { display: flex; gap: 26px; margin-left: auto; }
 .site-nav a { font-size: 15px; font-weight: 500; color: var(--ink); }
 .site-nav a:hover { color: var(--orange); }
@@ -370,7 +368,6 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .contact-list li { font-size: clamp(14.5px, 1.0vw, 17.5px); }
   .quick-links a { font-size: clamp(14.5px, 1.0vw, 17.5px); }
   .footer-bottom { font-size: clamp(13px, .8vw, 15px); }
-  .footer-brand .logo-text strong { font-size: clamp(18px, 1.25vw, 23px); }
   .social { width: clamp(40px, 2.3vw, 46px); height: clamp(40px, 2.3vw, 46px); }
   .social svg { width: clamp(20px, 1.15vw, 23px); height: clamp(20px, 1.15vw, 23px); }
 }
