@@ -149,7 +149,6 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
   position: absolute; right: 7%; top: 50%;
   transform: translateY(-50%);
 }
-.head-sun-life .head-sun-img { width: 58px; }
 
 /* ===== 關於聖育 ===== */
 .about { padding: 36px 0 52px; }
@@ -219,61 +218,174 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
   text-shadow: 0 2px 12px rgba(37, 23, 10, .42);
 }
 
-/* ===== 師資團隊 ===== */
-.teachers { padding: 48px 0 52px; }
-.teacher-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-.teacher-card {
+/* ===== 校園留言板／校園環境 ===== */
+.bulletin { background: var(--bg); padding: 48px 0 52px; }
+.campus { background: var(--cream); padding: 48px 0 52px; }
+.showcase-layout { display: block; }
+.showcase-intro {
   position: relative;
-  background: #fff; border-radius: var(--card-radius);
-  box-shadow: var(--shadow-soft); padding: 22px 20px;
-  display: flex; gap: 16px; align-items: flex-start;
+  max-width: 1120px;
+  padding-right: 96px;
+  margin-bottom: 26px;
+}
+.showcase-intro h2 {
+  color: var(--ink);
+  letter-spacing: normal;
+  margin-bottom: 12px;
+}
+.showcase-intro .section-tag { color: var(--brown); }
+.showcase-intro .section-tag .ic { color: var(--green); }
+.showcase-intro .section-body { max-width: 62ch; }
+.showcase-sprig {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 72px;
+  height: auto;
+  color: var(--green);
+  margin: 0;
+  opacity: .9;
+  object-fit: contain;
+}
+
+.bulletin-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.bulletin-card {
+  min-width: 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid rgba(112, 91, 52, .10);
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(100, 78, 38, .06);
   transition: transform .2s, box-shadow .2s;
 }
-.teacher-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.teacher-avatar {
-  width: 72px; height: 72px; border-radius: 50%;
-  object-fit: cover; flex: none;
+.bulletin-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+.bulletin-card > img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
-.teacher-card h3 { font-size: 17px; font-weight: 900; }
-.teacher-role { font-size: 13px; color: var(--orange); font-weight: 700; margin: 2px 0 10px; }
-.teacher-meta { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
-.card-heart { position: absolute; right: 16px; bottom: 14px; width: 18px; height: 18px; }
+.bulletin-body { padding: 16px 18px 20px; }
+.bulletin-body h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: clamp(18px, 1.5vw, 20px);
+  font-weight: 900;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+.bulletin-body h3 b { color: var(--ink-soft); font-weight: 500; opacity: .55; }
+.bulletin-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+  color: var(--bg);
+  background: var(--green);
+}
+.bulletin-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.bulletin-body p { color: var(--ink-soft); font-size: clamp(15px, 1.15vw, 16px); line-height: 1.75; }
 
-/* ===== 校園生活 ===== */
-.life { padding: 8px 0 48px; }
-.life-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-.life-grid figure { margin: 0; }
-.life-grid img {
-  width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
-  border-radius: 16px; box-shadow: var(--shadow-soft);
-  transition: transform .2s;
+.campus-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.campus-grid figure { min-width: 0; margin: 0; }
+.campus-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: transform .2s, box-shadow .2s;
 }
-.life-grid figure:hover img { transform: translateY(-4px); }
-.life-grid figcaption {
-  text-align: center; font-size: 14px; font-weight: 700;
-  color: var(--ink); margin-top: 10px;
+.campus-grid figure:hover img { transform: translateY(-3px); box-shadow: var(--shadow); }
+.campus-grid figcaption {
+  margin-top: 9px;
+  text-align: center;
+  color: var(--ink);
+  font-size: clamp(15px, 1vw, 17px);
+  font-weight: 700;
+  line-height: 1.5;
 }
 
-/* ===== 家長回饋 ===== */
-.voices { background: var(--cream); padding: 48px 0 52px; }
-.voice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.voice-card {
+/* ===== 入園須知 ===== */
+.admission { background: var(--bg); padding: 48px 0 52px; }
+.admission-intro-leaf {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 62px;
+  height: auto;
+  color: var(--green);
+  margin: 0;
+  object-fit: contain;
+}
+.admission-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.admission-card {
   position: relative;
-  background: #fff; border-radius: var(--card-radius);
-  box-shadow: var(--shadow-soft); padding: 30px 26px 24px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+  min-width: 0;
+  min-height: 192px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .76);
+  border: 1px solid rgba(112, 91, 52, .09);
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(100, 78, 38, .05);
+  padding: 22px 20px;
 }
-.quote-mark {
-  position: absolute; top: 6px; left: 20px;
-  font-size: 56px; font-weight: 900; line-height: 1;
-  color: var(--yellow); font-family: Georgia, serif;
+.admission-icon {
+  width: 54px;
+  height: 54px;
+  color: var(--green);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-.voice-card > p { font-size: 15px; color: var(--ink); margin: 14px 0 20px; }
-.voice-card footer { display: flex; align-items: center; gap: 12px; }
-.voice-card footer img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-.voice-avatar { display: block; width: 48px; height: 48px; flex: none; }
-.voice-avatar svg { width: 100%; height: 100%; display: block; }
-.voice-card strong { display: block; font-size: 15px; }
-.stars { color: var(--yellow); font-size: 15px; letter-spacing: 2px; }
+.admission-icon-health { fill: var(--green); stroke: var(--green); }
+.admission-icon-health .health-cross { fill: var(--bg); stroke: none; }
+.admission-icon-asset { object-fit: contain; }
+.admission-copy { position: relative; z-index: 1; min-width: 0; }
+.admission-copy h3 {
+  color: var(--ink);
+  font-size: clamp(18px, 1.5vw, 20px);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.admission-copy p { color: var(--ink-soft); font-size: clamp(15px, 1.15vw, 16px); line-height: 1.75; }
+.admission-times { margin-bottom: 8px; }
+.admission-times span { display: block; }
+.admission-times strong { color: var(--ink); font-weight: 700; }
+.admission-card:nth-child(2) .admission-copy { padding-bottom: 34px; }
+.admission-deco {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  width: 48px;
+  height: auto;
+  color: var(--green);
+  opacity: .9;
+}
+.admission-deco-plant { width: 30px; opacity: .72; }
+.admission-deco-items {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 5px;
+  width: 82px;
+  height: 54px;
+  opacity: .92;
+}
+.admission-deco-items img { display: block; width: auto; max-width: none; object-fit: contain; }
+.admission-deco-items img:first-child { height: 50px; }
+.admission-deco-items img:last-child { height: 42px; }
+.admission-deco-flower { width: 44px; opacity: .72; }
 
 /* ===== CTA ===== */
 .cta { padding: 16px 0 52px; }
@@ -332,7 +444,7 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
 .footer-legal span { margin: 0 6px; }
 
 /* ===== 裝飾元件（spot decorations）===== */
-.features, .about, .classes, .teachers, .life, .voices { position: relative; }
+.features, .about, .classes, .bulletin, .campus, .admission { position: relative; }
 .container { position: relative; z-index: 1; }
 .deco-layer {
   position: absolute; inset: 0; overflow: hidden;
@@ -362,12 +474,9 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .section-body { font-size: clamp(17.5px, 1.15vw, 21px); }
   .feature-card h3 { font-size: 20px; }
   .feature-card p { font-size: 16px; }
-  .teacher-card h3 { font-size: 19px; }
-  .teacher-role { font-size: 14px; }
-  .teacher-meta { font-size: 14px; }
-  .life-grid figcaption { font-size: 15.5px; }
-  .voice-card > p { font-size: 17px; }
-  .voice-card strong { font-size: 16px; }
+  .bulletin-body h3, .admission-copy h3 { font-size: 20px; }
+  .bulletin-body p, .admission-copy p { font-size: 16px; }
+  .campus-grid figcaption { font-size: 15.5px; }
   .about-badges li { font-size: 16px; }
   .btn { font-size: 16px; padding: 13px 28px; }
 
@@ -381,7 +490,6 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
 
   /* 圖片／元素份量：放大被限縮的視覺元素 */
   .feature-icon { width: 56px; height: 56px; }
-  .teacher-avatar { width: 80px; height: 80px; }
 
   /* hero 照片高度設天花板：不讓它隨寬度一直抽高，與左欄文字高度對齊、
      消掉「導覽列到內容之間」那條會隨螢幕變大的頂部空白帶 */
@@ -407,10 +515,13 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
 
 @media (max-width: 1024px) {
   .hero h1 { font-size: 38px; }
-  .features-grid, .teacher-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
   .class-feature { aspect-ratio: 16 / 7; }
-  .life-grid { grid-template-columns: repeat(3, 1fr); }
-  .voice-grid { grid-template-columns: repeat(2, 1fr); }
+  .showcase-intro { max-width: 900px; padding-right: 90px; }
+  .showcase-intro br { display: none; }
+  .showcase-sprig { width: 70px; }
+  .admission-intro-leaf { width: 62px; }
+  .campus-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .site-nav { display: none; }
   .nav-toggle { display: block; margin-left: auto; }
@@ -425,18 +536,24 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .site-nav.open a { padding: 10px 0; border-bottom: 1px solid #F5EDDD; }
 }
 
+@media (max-width: 760px) {
+  .bulletin-grid { grid-template-columns: 1fr; }
+  .bulletin-card { display: grid; grid-template-columns: minmax(180px, .9fr) 1.1fr; }
+  .bulletin-card > img { height: 100%; aspect-ratio: auto; }
+  .admission-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 640px) {
   .hero-inner, .about-inner { grid-template-columns: 1fr; }
   .hero h1 { font-size: 32px; }
   .hero-blob { left: -80px; bottom: -30px; top: auto; width: 180px; height: 180px; opacity: .5; }
   .head-sun-classes { right: 2%; top: 4px; transform: none; }
   .head-sun-classes .head-sun-img { width: 42px; }
-  .head-sun-life .head-sun-img { width: 46px; }
   .hero-copy { padding-bottom: 32px; }
   .hero-photo { margin-right: 0; }
   .hero-photo img { border-radius: 28px; }
   .features-grid { margin-top: 24px; }
-  .features-grid, .teacher-grid, .voice-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
   .class-feature { aspect-ratio: 4 / 3; border-radius: 20px; }
   .class-feature::after { inset: 26% 0 0; }
   .class-feature img { object-position: center center; }
@@ -446,7 +563,20 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
     font-size: clamp(16px, 4.6vw, 20px);
     line-height: 1.5;
   }
-  .life-grid { grid-template-columns: repeat(2, 1fr); }
+  .bulletin, .campus, .admission { padding: 44px 0 48px; }
+  .showcase-intro { padding-right: 64px; margin-bottom: 22px; }
+  .showcase-intro h2 { margin-bottom: 10px; }
+  .showcase-sprig { width: 54px; }
+  .admission-intro-leaf { width: 50px; }
+  .bulletin-card { display: block; }
+  .bulletin-card > img { height: auto; aspect-ratio: 16 / 9; }
+  .bulletin-body h3 { white-space: normal; }
+  .campus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 14px; }
+  .campus-grid figure:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc((100% - 12px) / 2);
+    justify-self: center;
+  }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   h2 { font-size: 26px; }
   .nav-cta { display: none; }
