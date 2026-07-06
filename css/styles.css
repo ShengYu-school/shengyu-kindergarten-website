@@ -172,18 +172,52 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
 .about-photo img { border-radius: 28px; box-shadow: var(--shadow); width: 100%; }
 
 /* ===== 課程介紹 ===== */
-.classes { background: var(--cream); padding: 48px 0 52px; }
+.classes { background: var(--cream); padding: clamp(48px, 5vw, 76px) 0 clamp(54px, 5.5vw, 84px); }
 .classes .section-head h2 { margin-top: 2px; }
-.class-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-.class-card {
-  background: #fff; border-radius: var(--card-radius);
-  box-shadow: var(--shadow-soft); overflow: hidden;
-  transition: transform .2s, box-shadow .2s;
+.classes .section-head { margin-bottom: clamp(26px, 3vw, 42px); }
+.class-feature {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  aspect-ratio: 8 / 3;
+  overflow: hidden;
+  border-radius: clamp(20px, 2vw, 32px);
+  background: #D9C7A5;
+  box-shadow: 0 12px 32px rgba(92, 66, 30, .14);
 }
-.class-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.class-photo img { width: 100%; aspect-ratio: 175 / 79; object-fit: cover; }
-.class-body { padding: 16px 18px 18px; }
-.class-body p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 12px; min-height: 52px; }
+.class-feature::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 32% 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(40, 27, 15, 0) 0%,
+    rgba(40, 27, 15, .68) 58%,
+    rgba(40, 27, 15, .88) 100%
+  );
+  pointer-events: none;
+}
+.class-feature img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+}
+.class-caption {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(22px, 3vw, 48px);
+  color: #FFFDF8;
+  font-size: clamp(17px, 1.45vw, 26px);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: .025em;
+  text-shadow: 0 2px 12px rgba(37, 23, 10, .42);
+}
 
 /* ===== 師資團隊 ===== */
 .teachers { padding: 48px 0 52px; }
@@ -328,7 +362,6 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .section-body { font-size: clamp(17.5px, 1.15vw, 21px); }
   .feature-card h3 { font-size: 20px; }
   .feature-card p { font-size: 16px; }
-  .class-body p { font-size: 16px; }
   .teacher-card h3 { font-size: 19px; }
   .teacher-role { font-size: 14px; }
   .teacher-meta { font-size: 14px; }
@@ -374,7 +407,8 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
 
 @media (max-width: 1024px) {
   .hero h1 { font-size: 38px; }
-  .features-grid, .class-grid, .teacher-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid, .teacher-grid { grid-template-columns: repeat(2, 1fr); }
+  .class-feature { aspect-ratio: 16 / 7; }
   .life-grid { grid-template-columns: repeat(3, 1fr); }
   .voice-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
@@ -402,11 +436,19 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .hero-photo { margin-right: 0; }
   .hero-photo img { border-radius: 28px; }
   .features-grid { margin-top: 24px; }
-  .features-grid, .class-grid, .teacher-grid, .voice-grid { grid-template-columns: 1fr; }
+  .features-grid, .teacher-grid, .voice-grid { grid-template-columns: 1fr; }
+  .class-feature { aspect-ratio: 4 / 3; border-radius: 20px; }
+  .class-feature::after { inset: 26% 0 0; }
+  .class-feature img { object-position: center center; }
+  .class-caption {
+    max-width: 30ch;
+    padding: 22px 20px;
+    font-size: clamp(16px, 4.6vw, 20px);
+    line-height: 1.5;
+  }
   .life-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   h2 { font-size: 26px; }
   .nav-cta { display: none; }
   .cta-school, .cta-balloon { width: 80px; opacity: .6; }
-  .class-body p { min-height: 0; }
 }
