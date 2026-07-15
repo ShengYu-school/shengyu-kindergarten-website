@@ -1,19 +1,32 @@
 const toggle = document.getElementById('nav-toggle');
 const nav = document.getElementById('site-nav');
 
-toggle.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open);
-});
-
-nav.addEventListener('click', (e) => {
-  if (e.target.tagName === 'A') {
+if (toggle && nav) {
+  const closeNavigation = () => {
     nav.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
-  }
-});
+    toggle.setAttribute('aria-label', '開啟選單');
+  };
 
-// 課程卡內文：寬度不足時只在標點處斷行，避免切斷詞語或句子。
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
+  });
+
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) closeNavigation();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      closeNavigation();
+      toggle.focus();
+    }
+  });
+}
+
+// 課程卡內文：優先在標點處斷行，必要時再依可容納字數安全換行。
 const punctuationParagraphs = document.querySelectorAll('[data-punctuation-wrap]');
 const strongBreaks = new Set(['。', '；', ';', '—', '–', '―', '─', '－', '﹘', '﹣']);
 const weakBreaks = new Set(['，', '、', '：', ':', '！', '!', '？', '?', '）', '」', '』', '》', '〉', '】']);
@@ -69,10 +82,12 @@ function punctuationLines(text, maxWidth, styles) {
 
     const breakIndex = strongIndex >= 0 ? strongIndex : weakIndex;
 
-    // 沒有可用標點時不強行切字；交由瀏覽器維持原句，避免無意義斷詞。
+    // 標點超出欄寬時以實際可容納字元安全斷行，避免整句溢出卡片。
     if (breakIndex < 0) {
-      lines.push(characters.slice(start).join(''));
-      break;
+      const fallbackLength = Math.max(1, fittingCharacters.length);
+      lines.push(characters.slice(start, start + fallbackLength).join(''));
+      start += fallbackLength;
+      continue;
     }
 
     lines.push(fittingCharacters.slice(0, breakIndex + 1).join(''));
