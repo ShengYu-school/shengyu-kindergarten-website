@@ -69,8 +69,6 @@ ul { padding: 0; list-style: none; }
 .site-nav { display: flex; gap: 26px; margin-left: auto; }
 .site-nav a { font-size: 15px; font-weight: 500; color: var(--ink); }
 .site-nav a:hover { color: var(--orange-text); }
-.mobile-menu-cta { display: none; }
-.nav-cta { flex: none; }
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -262,7 +260,7 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
 .course-card-family { --course-bg: #FDF0ED; --course-line: #E9BDB5; --course-accent: #B53D36; }
 
 /* ===== 校園留言板／校園環境 ===== */
-.bulletin { background: var(--bg); padding: 48px 0 52px; }
+.bulletin { background: var(--cream); padding: 48px 0 52px; }
 .campus { background: var(--bg); padding: 48px 0 52px; }
 .showcase-layout { display: block; }
 .showcase-intro {
@@ -385,6 +383,16 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
 .bulletin-link { display: inline-flex; align-items: center; gap: 5px; margin-top: auto; padding-top: 18px; color: var(--orange-text); font-size: clamp(15px, 1.05vw, 17px); font-weight: 900; }
 .bulletin-link::after { content: "→"; font-size: 17px; transition: transform .2s; }
 .bulletin-link:hover::after { transform: translateX(3px); }
+.bulletin-link:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; border-radius: 4px; }
+.bulletin-empty {
+  grid-column: 1 / -1;
+  padding: clamp(28px, 3vw, 44px);
+  border: 1px dashed rgba(112, 91, 52, .24);
+  border-radius: 18px;
+  color: var(--ink-soft);
+  text-align: center;
+  background: rgba(255, 255, 255, .54);
+}
 
 .campus-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
 .campus-grid figure { min-width: 0; margin: 0; }
@@ -407,7 +415,7 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
 }
 
 /* ===== 入園資訊 ===== */
-.admission { background: var(--cream); padding: 48px 0 52px; }
+.admission { background: var(--bg); padding: 48px 0 52px; }
 .admission-details { display: grid; gap: 22px; }
 .admission-hours,
 .admission-flow {
@@ -515,13 +523,13 @@ h2 { font-size: 32px; font-weight: 900; color: var(--ink); }
   overflow: hidden;
 }
 .cta-copy { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-.cta-banner h2 { color: var(--brown); margin-bottom: 12px; }
-.cta-banner p { color: #6C5212; font-size: 16px; font-weight: 500; margin-bottom: 24px; }
+.cta-banner h2 { color: var(--brown); margin-bottom: 12px; text-wrap: balance; }
+.cta-banner p { color: #6C5212; font-size: 16px; font-weight: 500; line-height: 1.75; margin-bottom: 0; text-wrap: balance; }
 .cta-art { position: absolute; }
 .cta-school { left: 4%; bottom: 0; width: 150px; }
 .cta-balloon { right: 6%; top: 18px; width: 96px; }
+.cta-rainbow { left: 15%; top: 8px; width: 124px; transform: rotate(-5deg); filter: drop-shadow(0 5px 6px rgba(122, 77, 24, .08)); }
 .cta-cloud { width: 70px; }
-.cloud-1 { left: 22%; top: 14px; }
 .cloud-2 { right: 24%; bottom: 22px; }
 
 /* ===== Footer ===== */
@@ -631,7 +639,6 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .site-nav { display: none; }
   .nav-toggle { display: flex; margin-left: auto; }
   .nav-inner { gap: 16px; }
-  .nav-cta { display: none; }
   .site-nav.open {
     display: flex; flex-direction: column; gap: 4px;
     position: absolute; top: calc(100% + 8px); left: auto; right: 24px;
@@ -642,25 +649,14 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
     border-radius: 18px;
     box-shadow: var(--shadow);
   }
-  .site-nav.open > a:not(.mobile-menu-cta) {
+  .site-nav.open > a {
     display: flex;
     align-items: center;
     min-height: 44px;
     padding: 8px 12px;
     border-bottom: 1px solid #F5EDDD;
   }
-  .site-nav.open > a[href="#teachers"] { border-bottom: 0; }
-  .site-nav.open .mobile-menu-cta {
-    display: inline-flex;
-    justify-content: center;
-    min-height: 46px;
-    margin-top: 6px;
-    padding: 11px 18px;
-    color: var(--brown);
-    font-weight: 900;
-    border-bottom: 0;
-  }
-  .site-nav.open .mobile-menu-cta:hover { color: var(--brown); }
+  .site-nav.open > a[href="#voices"] { border-bottom: 0; }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
@@ -758,6 +754,7 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
   .footer-bottom { gap: 8px; padding-top: 12px; padding-bottom: 16px; }
   h2 { font-size: 26px; }
   .cta-school, .cta-balloon { width: 80px; opacity: .6; }
+  .cta-rainbow { left: -8px; top: 8px; width: 82px; opacity: .62; }
 }
 
 @media (max-width: 420px) {
