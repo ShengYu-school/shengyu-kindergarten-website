@@ -10,11 +10,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "sanity": "latest",
-    "styled-components": "latest"
+    "sanity": "^6.7.0",
+    "styled-components": "^6.4.4"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "typescript": "latest"
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.17",
+    "typescript": "^7.0.2"
   }
 }
