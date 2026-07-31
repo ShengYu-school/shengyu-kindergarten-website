@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>前往校園公告預覽｜聖育幼兒園</title>
+</head>
+<body>
+<p>正在開啟與正式首頁相同版面的校園公告預覽…</p>
+<script>
+  const previewUrl = new URL('./', window.location.href);
+  previewUrl.searchParams.set('cms-preview', 'bulletin');
+  previewUrl.hash = 'teachers';
+  window.location.replace(previewUrl);
+</script>
+<noscript>
+  <p>請啟用 JavaScript，或返回聖育幼兒園首頁。</p>
+</noscript>
+</body>
+</html>
