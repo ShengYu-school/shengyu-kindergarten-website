@@ -115,6 +115,10 @@ ul { padding: 0; list-style: none; }
 .lead { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 28px; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero-photo { margin-right: calc(50% - 50vw); }
+.hero-photo-composite {
+  min-width: 0;
+  margin-right: calc((min(100vw, clamp(1200px, 95vw, 1800px)) - 100vw) / 2 - 24px);
+}
 .hero-photo img {
   width: 100%;
   border-radius: 110px 0 0 60px;
