@@ -72,7 +72,13 @@
   };
 
   const renderEmptyState = () => {
-    const emptyState = createElement('p', 'bulletin-empty', '目前沒有最新公告，歡迎稍後再回來查看。');
+    const emptyState = createElement('div', 'bulletin-empty');
+    emptyState.append(
+      createElement('p', '', '園務公告整理中，如需收費、託藥或接送資訊，歡迎來電洽詢。'),
+    );
+    const phone = createElement('a', 'bulletin-link', '來電洽詢：02-2790-9417');
+    phone.href = 'tel:0227909417';
+    emptyState.append(phone);
     grid.replaceChildren(emptyState);
   };
 
