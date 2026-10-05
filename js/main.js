@@ -119,3 +119,45 @@ if (document.fonts?.ready) {
 } else {
   applyPunctuationWraps();
 }
+
+
+// Keep native touch scrolling and buttons in sync; do not advance automatically.
+const campusTrack = document.querySelector('.campus-track');
+if (campusTrack) {
+  const previous = document.querySelector('.campus-prev');
+  const next = document.querySelector('.campus-next');
+  const position = document.querySelector('.campus-position');
+  const photos = [...campusTrack.querySelectorAll('figure')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let positionTimer;
+  function campusMetrics() {
+    const step = photos[0].getBoundingClientRect().width + parseFloat(getComputedStyle(campusTrack).gap);
+    return { step, visible: Math.max(1, Math.floor((campusTrack.clientWidth + parseFloat(getComputedStyle(campusTrack).gap) + 1) / step)) };
+  }
+  function updateCampusPosition() {
+    const { step } = campusMetrics();
+    const first = Math.round(campusTrack.scrollLeft / step) + 1;
+    const count = Math.max(1, Math.round((campusTrack.clientWidth + parseFloat(getComputedStyle(campusTrack).gap)) / step));
+    position.textContent = `顯示 ${first}–${Math.min(photos.length, first + count - 1)} / ${photos.length} 張`;
+    previous.disabled = campusTrack.scrollLeft <= 2;
+    next.disabled = campusTrack.scrollLeft >= campusTrack.scrollWidth - campusTrack.clientWidth - 2;
+  }
+  function moveCampus(direction) {
+    const { step, visible } = campusMetrics();
+    campusTrack.scrollBy({ left: direction * step * visible, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  }
+  previous.addEventListener('click', () => moveCampus(-1));
+  next.addEventListener('click', () => moveCampus(1));
+  campusTrack.addEventListener('keydown', event => {
+    if (event.target !== campusTrack || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') moveCampus(event.key === 'ArrowLeft' ? -1 : 1);
+    else campusTrack.scrollTo({ left: event.key === 'Home' ? 0 : campusTrack.scrollWidth, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  });
+  campusTrack.addEventListener('scroll', () => {
+    clearTimeout(positionTimer);
+    positionTimer = setTimeout(updateCampusPosition, 120);
+  }, { passive: true });
+  new ResizeObserver(updateCampusPosition).observe(campusTrack);
+  updateCampusPosition();
+}

@@ -764,3 +764,60 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
 @media (max-width: 420px) {
   .admission-time-list { grid-template-columns: 1fr; }
 }
+
+
+/* Real school photographs: small learning moments and a visit invitation. */
+.course-snapshot { position: relative; align-self: center; width: 100%; max-width: 100%; margin: 8px 0 8px 8px; padding: 7px 7px 0; background: #fffdf8; transform: rotate(3deg); box-shadow: 0 4px 12px rgba(93, 63, 27, .1); }
+/* Let illustrations cross the card edge without extending the decorative circle. */
+.course-card:has(.course-snapshot) { overflow: visible; }
+.course-card:has(.course-snapshot)::after { display: none; }
+.course-card:has(.course-snapshot) > .course-icon { position: absolute; width: 118px; margin: 0; pointer-events: none; }
+.course-card-story:has(.course-snapshot) > .course-icon { left: -12px; right: auto; top: -78px; bottom: auto; transform: rotate(-10deg); }
+.course-card-steam:has(.course-snapshot) > .course-icon { right: -12px; top: -78px; transform: rotate(9deg); }
+.course-snapshot-block { transform: rotate(-3deg); }
+.course-snapshot-self-care { transform: rotate(-2deg); }
+.course-card-life:has(.course-snapshot) > .course-icon { left: -12px; right: auto; top: auto; bottom: -78px; transform: rotate(-8deg); }
+.course-card-family:has(.course-snapshot) > .course-icon { right: -12px; top: auto; bottom: -78px; transform: rotate(8deg); }
+.courses-grid:has(.course-snapshot-family) { padding-bottom: 44px; }
+
+.course-real-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.course-snapshot figcaption { padding: 8px 0 10px; font-size: 12px; line-height: 1.5; color: var(--brown); text-align: center; text-wrap: balance; }
+@media (max-width: 640px) {
+  .course-card:has(.course-snapshot) { display: grid; grid-template-columns: minmax(0, 1fr) 124px; align-items: center; gap: 14px; padding: 24px 18px; }
+  .courses-grid { padding-top: 22px; }
+  .course-card:has(.course-snapshot) > .course-icon { width: 90px; }
+  .course-card-story:has(.course-snapshot) > .course-icon { left: -8px; right: auto; top: -62px; bottom: auto; }
+  .course-card-steam:has(.course-snapshot) > .course-icon { right: -8px; top: -62px; bottom: auto; }
+
+  .course-card-life:has(.course-snapshot) > .course-icon { left: -8px; right: auto; top: auto; bottom: -58px; }
+  .course-card-family:has(.course-snapshot) > .course-icon { right: -8px; top: auto; bottom: -58px; }
+  .courses-grid:has(.course-snapshot-family) { row-gap: 40px; padding-bottom: 32px; }
+  .course-snapshot { width: 100%; margin: 8px 0; }
+  .course-snapshot figcaption { font-size: 11px; padding: 7px 0; }
+}
+
+
+/* Manual campus photo browsing. */
+.campus-gallery { min-width: 0; }
+.campus-carousel { position: relative; }
+.campus-track { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding: 5px 0 8px; }
+.campus-track::-webkit-scrollbar { display: none; }
+.campus-track figure { flex: 0 0 calc((100% - 88px) / 5); scroll-snap-align: start; }
+.campus-track:focus-visible { outline: 2px solid var(--brown); outline-offset: 4px; border-radius: 8px; }
+.campus-controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 14px; }
+.campus-position { font-size: 14px; color: var(--ink-soft); }
+.campus-arrows button { position: absolute; top: calc((100% - 38px) / 2); transform: translateY(-50%); z-index: 1; box-shadow: 0 3px 12px rgba(93, 63, 27, .14); }
+.campus-prev { left: -22px; }
+.campus-next { right: -22px; }
+.campus-arrows button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #dcc99f; border-radius: 50%; background: #fff8e8; color: var(--brown); cursor: pointer; }
+.campus-arrows svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.campus-arrows button:hover:not(:disabled) { background: var(--yellow); }
+.campus-arrows button:disabled { opacity: .35; cursor: default; }
+.campus-arrows button:focus-visible { outline: 2px solid var(--brown); outline-offset: 3px; }
+@media (max-width: 1024px) { .campus-track figure { flex-basis: calc((100% - 44px) / 3); } }
+@media (max-width: 640px) {
+ .campus-track { gap: 14px; }
+ .campus-track figure { flex-basis: calc((100% - 7px) / 1.5); }
+ .campus-track figure:last-child:nth-child(odd) { width: auto; }
+ .campus-track figure:last-child:nth-child(odd) img { aspect-ratio: 4 / 3; }
+}
