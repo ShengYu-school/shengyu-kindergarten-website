@@ -804,8 +804,6 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
 .campus-track::-webkit-scrollbar { display: none; }
 .campus-track figure { flex: 0 0 calc((100% - 88px) / 5); scroll-snap-align: start; }
 .campus-track:focus-visible { outline: 2px solid var(--brown); outline-offset: 4px; border-radius: 8px; }
-.campus-controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 14px; }
-.campus-position { font-size: 14px; color: var(--ink-soft); }
 .campus-arrows button { position: absolute; top: calc((100% - 38px) / 2); transform: translateY(-50%); z-index: 1; box-shadow: 0 3px 12px rgba(93, 63, 27, .14); }
 .campus-prev { left: -22px; }
 .campus-next { right: -22px; }

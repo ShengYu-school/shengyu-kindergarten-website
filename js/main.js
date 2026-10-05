@@ -126,7 +126,6 @@ const campusTrack = document.querySelector('.campus-track');
 if (campusTrack) {
   const previous = document.querySelector('.campus-prev');
   const next = document.querySelector('.campus-next');
-  const position = document.querySelector('.campus-position');
   const photos = [...campusTrack.querySelectorAll('figure')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let positionTimer;
@@ -135,10 +134,6 @@ if (campusTrack) {
     return { step, visible: Math.max(1, Math.floor((campusTrack.clientWidth + parseFloat(getComputedStyle(campusTrack).gap) + 1) / step)) };
   }
   function updateCampusPosition() {
-    const { step } = campusMetrics();
-    const first = Math.round(campusTrack.scrollLeft / step) + 1;
-    const count = Math.max(1, Math.round((campusTrack.clientWidth + parseFloat(getComputedStyle(campusTrack).gap)) / step));
-    position.textContent = `顯示 ${first}–${Math.min(photos.length, first + count - 1)} / ${photos.length} 張`;
     previous.disabled = campusTrack.scrollLeft <= 2;
     next.disabled = campusTrack.scrollLeft >= campusTrack.scrollWidth - campusTrack.clientWidth - 2;
   }
