@@ -819,3 +819,11 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
  .campus-track figure:last-child:nth-child(odd) { width: auto; }
  .campus-track figure:last-child:nth-child(odd) img { aspect-ratio: 4 / 3; }
 }
+
+/* Reserve room for the backpack when course cards stack in one column. */
+@media (min-width: 641px) and (max-width: 878px) {
+  .course-card-life:has(.course-snapshot) { height: auto; margin-bottom: 64px; }
+}
+@media (max-width: 640px) {
+  .course-card-life:has(.course-snapshot) { height: auto; margin-bottom: 28px; }
+}
