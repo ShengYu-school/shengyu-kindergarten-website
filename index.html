@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20261005-course-backpack-v1">
+<link rel="stylesheet" href="css/styles.css?v=20261006-about-carousel-tap">
 </head>
 <body>
 
@@ -112,8 +112,31 @@
         <li><span class="badge-ic badge-orange"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l2.9 6.3L21.8 9l-5 4.7L18 20.5 12 17l-6 3.5 1.2-6.8-5-4.7 6.9-.7L12 2z"/></svg></span>自信與成長</li>
       </ul>
     </div>
-    <div class="about-photo">
-      <img src="assets/img/about-learning-room-960.webp" srcset="assets/img/about-learning-room-480.webp 480w, assets/img/about-learning-room-960.webp 960w, assets/img/about-learning-room-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="聖育幼兒園教室的另一個視角，窗邊有木質教具櫃與孩子作品" width="1500" height="1000" loading="lazy" decoding="async">
+    <div class="about-photo about-carousel" role="region" aria-roledescription="輪播" aria-label="關於聖育的六張校園照片">
+      <div class="about-slides">
+        <img class="about-slide is-active" src="assets/img/about-learning-room-960.webp" srcset="assets/img/about-learning-room-480.webp 480w, assets/img/about-learning-room-960.webp 960w, assets/img/about-learning-room-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="聖育幼兒園教室的另一個視角，窗邊有木質教具櫃與孩子作品" width="1500" height="1000" loading="lazy" decoding="async">
+        <img class="about-slide" src="assets/img/about-123750-960.webp" srcset="assets/img/about-123750-480.webp 480w, assets/img/about-123750-960.webp 960w, assets/img/about-123750-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="聖育教室的活動桌與教具空間" width="1500" height="1000" loading="lazy" decoding="async" aria-hidden="true">
+        <img class="about-slide" src="assets/img/about-123746-960.webp" srcset="assets/img/about-123746-480.webp 480w, assets/img/about-123746-960.webp 960w, assets/img/about-123746-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="聖育教室的學習與作品展示空間" width="1500" height="1000" loading="lazy" decoding="async" aria-hidden="true">
+        <img class="about-slide" src="assets/img/about-123800-960.webp" srcset="assets/img/about-123800-480.webp 480w, assets/img/about-123800-960.webp 960w, assets/img/about-123800-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="窗邊閱讀帳篷、玩偶與繪本展示架" width="1500" height="1000" loading="lazy" decoding="async" aria-hidden="true">
+        <img class="about-slide" src="assets/img/about-123849-960.webp" srcset="assets/img/about-123849-480.webp 480w, assets/img/about-123849-960.webp 960w, assets/img/about-123849-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="園內樓梯、教室入口與走廊作品展示" width="1500" height="1000" loading="lazy" decoding="async" aria-hidden="true">
+        <img class="about-slide" src="assets/img/about-123944-960.webp" srcset="assets/img/about-123944-480.webp 480w, assets/img/about-123944-960.webp 960w, assets/img/about-123944-1500.webp 1500w" sizes="(max-width: 640px) calc(100vw - 48px), 50vw" alt="聖育教室的木質活動桌、教具櫃與孩子作品" width="1500" height="1000" loading="lazy" decoding="async" aria-hidden="true">
+      </div>
+      <button type="button" class="about-autoplay" aria-label="暫停照片輪播" hidden>
+        <span class="about-playback-feedback" aria-hidden="true">
+          <svg class="about-feedback-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="about-feedback-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+        </span>
+      </button>
+      <div class="about-carousel-controls" hidden>
+        <div class="about-carousel-dots" role="group" aria-label="選擇照片">
+          <button type="button" class="about-dot" aria-label="查看第 1 張照片" aria-current="true"><span></span></button>
+          <button type="button" class="about-dot" aria-label="查看第 2 張照片" aria-current="false"><span></span></button>
+          <button type="button" class="about-dot" aria-label="查看第 3 張照片" aria-current="false"><span></span></button>
+          <button type="button" class="about-dot" aria-label="查看第 4 張照片" aria-current="false"><span></span></button>
+          <button type="button" class="about-dot" aria-label="查看第 5 張照片" aria-current="false"><span></span></button>
+          <button type="button" class="about-dot" aria-label="查看第 6 張照片" aria-current="false"><span></span></button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -407,6 +430,6 @@
 
 <script src="js/sanity-config.js?v=20260731-cms3"></script>
 <script src="js/bulletin.js?v=20261005-announcements-soon"></script>
-<script src="js/main.js?v=20261005-campus-carousel-v3"></script>
+<script src="js/main.js?v=20261006-about-carousel-tap"></script>
 </body>
 </html>

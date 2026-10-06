@@ -827,3 +827,26 @@ img.deco { height: auto; object-fit: contain; opacity: .92; }
 @media (max-width: 640px) {
   .course-card-life:has(.course-snapshot) { height: auto; margin-bottom: 28px; }
 }
+
+/* A stable photo frame with a gentle crossfade. */
+.about-carousel { position: relative; min-width: 0; }
+.about-slides { position: relative; aspect-ratio: 3 / 2; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); }
+.about-carousel .about-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; box-shadow: none; opacity: 0; transition: opacity 600ms cubic-bezier(.25, 1, .5, 1); }
+.about-carousel .about-slide.is-active { opacity: 1; }
+.about-carousel-controls { position: absolute; inset: auto 0 0; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 14px 14px 8px; border-radius: 0 0 28px 28px; background: linear-gradient(transparent, rgba(39, 30, 18, .24)); pointer-events: none; }
+.about-carousel-controls[hidden] { display: none; }
+.about-carousel-dots { display: flex; pointer-events: auto; }
+.about-dot { display: grid; place-items: center; width: 32px; height: 36px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.about-dot span { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.45); }
+.about-dot[aria-current="true"] span { background: rgba(255,255,255,.9); width: 7px; height: 7px; }
+/* The photo itself is the playback control; feedback appears only after a tap. */
+.about-autoplay { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 28px; background: transparent; cursor: pointer; }
+.about-autoplay[hidden] { display: none; }
+.about-playback-feedback { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: rgba(0,0,0,.28); color: rgba(255,255,255,.85); opacity: 0; pointer-events: none; }
+.about-playback-feedback svg { width: 32px; height: 32px; fill: currentColor; }
+.about-feedback-play { display: none; }
+.about-autoplay[data-action="play"] .about-feedback-play { display: block; }
+.about-autoplay[data-action="play"] .about-feedback-pause { display: none; }
+.about-dot:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+.about-autoplay:focus-visible { outline: 2px solid white; outline-offset: -5px; }
+@media (prefers-reduced-motion: reduce) { .about-carousel .about-slide { transition: none; } }

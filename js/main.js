@@ -156,3 +156,62 @@ if (campusTrack) {
   new ResizeObserver(updateCampusPosition).observe(campusTrack);
   updateCampusPosition();
 }
+
+
+// Tap the photo to control playback; pause outside the viewport or after choosing a photo.
+const aboutCarousel = document.querySelector('.about-carousel');
+if (aboutCarousel) {
+  const slides = [...aboutCarousel.querySelectorAll('.about-slide')];
+  const dots = [...aboutCarousel.querySelectorAll('.about-dot')];
+  const toggle = aboutCarousel.querySelector('.about-autoplay');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let current = 0, timer, visible = false, feedbackAnimation;
+  let paused = motion.matches, request = 0;
+  const allowed = () => !paused && visible && !document.hidden;
+  function schedule() {
+    clearTimeout(timer);
+    if (allowed()) timer = setTimeout(async () => {
+      await show((current + 1) % slides.length);
+      schedule();
+    }, 5000);
+  }
+  function updateToggle() {
+    toggle.setAttribute('aria-label', paused ? '播放照片輪播' : '暫停照片輪播');
+  }
+  async function show(index) {
+    const token = ++request;
+    try { await slides[index].decode(); } catch { return; }
+    if (token !== request) return;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === index);
+      slide.setAttribute('aria-hidden', String(i !== index));
+      dots[i].setAttribute('aria-current', String(i === index));
+    });
+    current = index;
+  }
+  dots.forEach((dot, index) => dot.addEventListener('click', () => {
+    paused = true;
+    updateToggle();
+    schedule();
+    show(index);
+  }));
+  toggle.addEventListener('click', () => {
+    paused = !paused;
+    if (paused) request++;
+    toggle.dataset.action = paused ? 'pause' : 'play';
+    feedbackAnimation?.cancel();
+    feedbackAnimation = toggle.querySelector('.about-playback-feedback').animate([
+      { opacity: .85, transform: 'scale(.92)' },
+      { opacity: .85, transform: 'scale(1)', offset: .3 },
+      { opacity: 0, transform: motion.matches ? 'scale(1)' : 'scale(1.12)' }
+    ], { duration: motion.matches ? 250 : 450, easing: 'cubic-bezier(.25,1,.5,1)' });
+    updateToggle();
+    schedule();
+  });
+  document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); schedule(); });
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .25 }).observe(aboutCarousel);
+  updateToggle();
+  toggle.hidden = false;
+  aboutCarousel.querySelector('.about-carousel-controls').hidden = false;
+}
