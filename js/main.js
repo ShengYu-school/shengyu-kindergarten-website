@@ -173,7 +173,7 @@ if (aboutCarousel) {
     if (allowed()) timer = setTimeout(async () => {
       await show((current + 1) % slides.length);
       schedule();
-    }, 5000);
+    }, 3500);
   }
   function updateToggle() {
     toggle.setAttribute('aria-label', paused ? '播放照片輪播' : '暫停照片輪播');
