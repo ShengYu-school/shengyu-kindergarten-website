@@ -170,10 +170,15 @@ if (aboutCarousel) {
   const allowed = () => !paused && visible && !document.hidden;
   function schedule() {
     clearTimeout(timer);
+    if (allowed()) {
+      // Prepare the next photo during the current photo's viewing time.
+      slides[(current + 1) % slides.length].loading = 'eager';
+      slides[(current + 1) % slides.length].decode().catch(() => {});
+    }
     if (allowed()) timer = setTimeout(async () => {
       await show((current + 1) % slides.length);
       schedule();
-    }, 3500);
+    }, 3000);
   }
   function updateToggle() {
     toggle.setAttribute('aria-label', paused ? '播放照片輪播' : '暫停照片輪播');
@@ -210,7 +215,12 @@ if (aboutCarousel) {
   });
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', () => { paused = motion.matches; updateToggle(); schedule(); });
-  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }, { threshold: .25 }).observe(aboutCarousel);
+  new IntersectionObserver(entries => {
+    const nextVisible = entries[0].isIntersecting && entries[0].intersectionRatio >= .25;
+    if (nextVisible === visible) return;
+    visible = nextVisible;
+    schedule();
+  }, { threshold: .25 }).observe(aboutCarousel);
   updateToggle();
   toggle.hidden = false;
   aboutCarousel.querySelector('.about-carousel-controls').hidden = false;
